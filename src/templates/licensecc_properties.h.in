@@ -38,6 +38,7 @@
 #define LCC_LICENSE_FILE_EXTENSION ".lic"
 #define LCC_LICENSE_LOCATION_ENV_VAR "LICENSE_LOCATION"
 #define LCC_LICENSE_DATA_ENV_VAR "LICENSE_DATA"
+#define LCC_LICENSE_DATA_PLAIN_TEXT_LOCATION "LICENSE_PLAINTEXT_LOCATION"
 
 // Api structure limits
 /**
@@ -107,6 +108,10 @@ enum LCC_API_HW_IDENTIFICATION_STRATEGY {
 	* Not yet implemented
 	*/
 	STRATEGY_HOST_NAME = 4,
+	/**
+	 * Pc identifier is created from a plain text file content
+	 */
+	STRATEGY_PLAINTEXT = 5,
 	STRATEGY_NONE = -2
 };
 
@@ -117,12 +122,12 @@ enum LCC_API_HW_IDENTIFICATION_STRATEGY {
 /**
  * List the strategies used when no virtual envrionment is detected
  */
-#define LCC_BARE_TO_METAL_STRATEGIES { STRATEGY_DISK, STRATEGY_HOST_NAME, STRATEGY_NONE }
+#define LCC_BARE_TO_METAL_STRATEGIES { STRATEGY_DISK, STRATEGY_HOST_NAME, STRATEGY_PLAINTEXT, STRATEGY_NONE }
 /**
  * List the strategies used when the software is executing in a virtual machine
  */
-#define LCC_VM_STRATEGIES { STRATEGY_ETHERNET, STRATEGY_NONE }
-#define LCC_LXC_STRATEGIES { STRATEGY_ETHERNET, STRATEGY_NONE }
+#define LCC_VM_STRATEGIES { STRATEGY_ETHERNET, STRATEGY_PLAINTEXT, STRATEGY_NONE }
+#define LCC_LXC_STRATEGIES { STRATEGY_ETHERNET, STRATEGY_PLAINTEXT, STRATEGY_NONE }
 #define LCC_DOCKER_STRATEGIES { STRATEGY_NONE }
 /**
  * List the strategies used when it's detected an execution in the cloud

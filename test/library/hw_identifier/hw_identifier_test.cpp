@@ -16,8 +16,10 @@
 #include <licensecc_properties.h>
 #include <licensecc_properties_test.h>
 
+#include "../../src/library/os/os.h"
 #include <licensecc/licensecc.h>
 #include "../../../src/library/hw_identifier/hw_identifier.hpp"
+#include "../../../src/library/hw_identifier/plaintext_strategy.cpp"
 
 namespace license {
 namespace test {
@@ -30,6 +32,7 @@ using namespace license::hw_identifier;
 BOOST_AUTO_TEST_CASE(set_and_compare_data) {
 	array<uint8_t, HW_IDENTIFIER_PROPRIETARY_DATA> data = {0xFF, 0x42, 0x42, 0x42, 0x42, 0x42, 0x42};
 	HwIdentifier pc_id;
+
 	pc_id.set_data(data);
 	data[0] = data[0] & 0x1f;
 	BOOST_CHECK_MESSAGE(pc_id.data_match(data), "Data match");
@@ -59,6 +62,7 @@ BOOST_AUTO_TEST_CASE(print_and_read) {
 	BOOST_CHECK_MESSAGE(id2.get_identification_strategy() == LCC_API_HW_IDENTIFICATION_STRATEGY::STRATEGY_ETHERNET,
 						"Strategy decoded correctly");
 	BOOST_CHECK_MESSAGE(id2.data_match(data), "Data deserialized correctly");
+
 }
 
 }  // namespace test

@@ -108,5 +108,7 @@ BOOST_AUTO_TEST_CASE(env_var_point_to_wrong_file) {
 	BOOST_CHECK_EQUAL(LICENSE_FILE_NOT_FOUND, registry.getLastFailure()->event_type);
 	UNSETENV(LCC_LICENSE_LOCATION_ENV_VAR);
 }
+
+
 }  // namespace test
 }  // namespace license

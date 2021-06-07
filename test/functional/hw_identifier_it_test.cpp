@@ -80,5 +80,20 @@ BOOST_AUTO_TEST_CASE(strategy_ip_address) {
 	}
 }
 
+
+
+/**
+ * Print a hardware identifier and read it from the same string, check the data matches
+ */
+BOOST_AUTO_TEST_CASE(strategy_plain_text) {
+
+	// Set Env var content
+	const char *environment_variable_value = PROJECT_TEST_SRC_DIR "/library/plain_text_license.txt";
+	SETENV(LCC_LICENSE_DATA_PLAIN_TEXT_LOCATION, environment_variable_value);
+
+	generate_and_verify_license(LCC_API_HW_IDENTIFICATION_STRATEGY::STRATEGY_PLAINTEXT, "strategy_plaintext");
+	
+}
+
 }  // namespace test
 }  // namespace license
